@@ -1,6 +1,14 @@
 {
-    "name": "anime-flv-scrapper",
-    "version": "1.0.0",
+    "name": "@slothstormer/animeflv-scrapper",
+    "description": "Scrapper para AnimeFLV",
+    "version": "0.1.0",
     "main": "lib/es5/index.js",
-    "module": "lib/es6/index.js"
+    "module": "lib/es6/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SlothStormer/animeflv-scrapper.git"
+    },
+    "license": "MIT",
+    "author": "SlothStormer",
+    "homepage": "https://github.com/SlothStormer/animeflv-scrapper#readme"
 }
