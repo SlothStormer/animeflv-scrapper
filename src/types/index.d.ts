@@ -13,7 +13,7 @@ export interface LatestAnime {
     type: string | null;
   }
   
-  export interface AnimeEpisodeInfo {
+  export interface EpisodeInfo {
     episode: number;
     url: string | undefined;
   }
@@ -27,7 +27,7 @@ export interface LatestAnime {
     title: string | null;
     description: string;
     genres: string[];
-    episodes: AnimeEpisodeInfo[] | null;
+    episodes: EpisodeInfo[] | null;
     rating: number;
     nextEpisode: NextEpisode | null;
     status: string;
@@ -40,7 +40,7 @@ export interface LatestAnime {
     relation: string;
   }
   
-  export interface EpisodeInfo {
+  export interface EpisodeServer {
     server: string;
     title: string;
     ads: number;

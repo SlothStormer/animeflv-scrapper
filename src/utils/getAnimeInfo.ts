@@ -1,11 +1,35 @@
-import type { AnimeInfo, AnimeEpisodeInfo } from "../types/index";
+import type { AnimeInfo, EpisodeInfo } from "../types/index";
 import * as cheerio from "cheerio";
 import config from "../config";
 
+/**
+ * Devuelve la informacion de un anime de AnimeFLV
+ * 
+ * @param {string} anime - Nombre del anime
+ * @returns {Promise<AnimeInfo>} Una promesa que resuelve con la informacion del anime 'AnimeInfo'
+ * 
+ * @example
+ * const anime = await getAnimeInfo("One Piece");
+ * // Output:
+ * {
+ *   title: "One Piece",
+ *   description: "Descripcion...",
+ *   genres: ["Action", "Adventure", "Comedy", "Drama", "Fantasy", "Mystery", "Psychological", "Romance", "Sci-Fi", "Slice of Life", "Supernatural", "Thriller", "Tragedy"],
+ *   episodes: [
+ *     { episode: 1, url: "/one-piece-1" },
+ *     { episode: 2, url: "/one-piece-2" },
+ *     ...
+ *   ],
+ *   rating: 8.5,
+ *   nextEpisode: "2022-01-01",
+ *   status: "Ongoing",
+ *   relatedAnime: [] 
+ */
 export const getAnimeInfo = async (anime: string): Promise<AnimeInfo> => {
   try {
+    console.log(config.baseUrl + config.animeUrl + anime.replace(/ /g, "-").toLowerCase())
     const response = await fetch(
-      config.baseUrl + config.animeUrl + anime.replace(/ /g, "-").toLowerCase()
+      config.baseUrl + config.animeUrl + anime.replace(/ /g, "-").toLowerCase() // Oshi no ko =>> oshi-no-ko
     );
     if (!response.ok)
       throw new Error(`Error al obtener el HTML: ${response.status}`);
@@ -15,7 +39,7 @@ export const getAnimeInfo = async (anime: string): Promise<AnimeInfo> => {
 
     const scripts = $("script:not([src]):not([type])");
 
-    let episodes: AnimeEpisodeInfo[] = [];
+    let episodes: EpisodeInfo[] = [];
     let anime_info = {
       title: null,
       id: null,

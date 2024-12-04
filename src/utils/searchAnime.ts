@@ -11,7 +11,7 @@ import config from "../config";
  *
  * @example
  * const anime = await searchAnime("one-piece");
- * // Output: [{ title: 'One Piece', url: 'https://www.animeflv.net/anime/one-piece', image: 'https://www.animeflv.net/images/anime/one-piece.jpg', review: 8.5, type: 'Anime', }]
+ * // Output: [{ title: 'One Piece', url: '/anime/one-piece', image: 'https://www.animeflv.net/images/anime/one-piece.jpg', review: 8.5, type: 'Anime', }]
  *
  * @throws {Error} Si no se puede acceder al sitio web.
  */
