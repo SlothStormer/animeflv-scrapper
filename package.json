@@ -1,12 +1,21 @@
 {
     "name": "anime-flv-scrapper",
     "version": "1.0.0",
+    "module": "index.ts",
+    "type": "module",
     "scripts": {
-        "compile": "tsc && tsc --build tsconfig.es5.json",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "compile": "rmdir .\\dist\\lib /s && tsc && tsc --build tsconfig.es5.json",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "bun run src/index.ts",
+        "dev": "bun run --watch src/index.ts"
     },
     "license": "MIT",
     "devDependencies": {
+        "@types/node": "^22.10.1",
+        "tslib": "^2.8.1",
         "typescript": "^5.7.2"
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0"
     }
 }
