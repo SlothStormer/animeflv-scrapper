@@ -1,5 +1,5 @@
+import type { SearchAnime } from "../types/index";
 import * as cheerio from "cheerio";
-import type { SearchAnime } from "../interfaces";
 import config from "../config";
 
 export const searchAnime = async (anime: string, page: number = 1): Promise<SearchAnime[]> => {

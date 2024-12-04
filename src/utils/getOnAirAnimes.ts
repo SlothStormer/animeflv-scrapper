@@ -1,5 +1,5 @@
+import type { OnAirAnime } from "../types/index";
 import * as cheerio from "cheerio";
-import type { OnAirAnime } from "../interfaces";
 import config from "../config";
 
 export const getOnAirAnimes = async (): Promise<OnAirAnime[]> => {

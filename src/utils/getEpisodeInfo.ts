@@ -1,6 +1,6 @@
+import type { EpisodeInfo } from "../types/index";
 import * as cheerio from "cheerio";
 import config from "../config";
-import type { EpisodeInfo } from "../interfaces";
 
 export const getEpisodeInfo = async (id: string): Promise<EpisodeInfo[]> => {
   const response = await fetch(config.baseUrl + config.episodeUrl + id);

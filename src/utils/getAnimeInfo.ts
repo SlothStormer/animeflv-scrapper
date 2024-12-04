@@ -1,5 +1,5 @@
+import type { AnimeInfo, AnimeEpisodeInfo } from "../types/index";
 import * as cheerio from "cheerio";
-import type { AnimeInfo, AnimeEpisodeInfo } from "../interfaces";
 import config from "../config";
 
 export const getAnimeInfo = async (anime: string): Promise<AnimeInfo> => {

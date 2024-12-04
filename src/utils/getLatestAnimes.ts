@@ -1,5 +1,5 @@
+import type { LatestAnime } from "../types/index";
 import * as cheerio from "cheerio";
-import type { LatestAnime } from "../interfaces";
 import config from "../config";
 
 export const getLatestAnimes = async (): Promise<LatestAnime[]> => {
