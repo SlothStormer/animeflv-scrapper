@@ -6,7 +6,10 @@
     "scripts": {
         "compile": "rmdir .\\dist\\lib /s && tsc && tsc --build tsconfig.es5.json",
         "start": "bun run src/index.ts",
-        "dev": "bun run --watch src/index.ts"
+        "dev": "bun run --watch src/index.ts",
+        "build:es5": "tsc --project tsconfig.es5.json",
+        "build:es6": "tsc --project tsconfig.es6.json",
+        "build": "rmdir .\\dist\\lib /s && npm run build:es5 && npm run build:es6"
     },
     "license": "MIT",
     "devDependencies": {
@@ -18,6 +21,7 @@
         "typescript": "^5.7.2"
     },
     "dependencies": {
+        "@slothstormer/animeflv-scrapper": "^0.1.5",
         "@tauri-apps/api": "^2.1.1",
         "@tauri-apps/plugin-http": "^2.0.1",
         "cheerio": "^1.0.0"

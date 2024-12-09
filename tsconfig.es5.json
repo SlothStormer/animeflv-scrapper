@@ -1,11 +1,9 @@
 {
+    "extends": "./tsconfig.json",
     "compilerOptions": {
-        "module": "CommonJS",
-        "target": "ES2015",
-        "lib": ["ES2020", "DOM"],
-        "declaration": true,
-        "outDir": "./dist/lib/es5",
-        "moduleResolution": "node",
-    },
-    "include": ["src/**/*"],
-}
+      "module": "CommonJS",
+      "target": "ES5",
+      "outDir": "./dist/lib/es5"
+    }
+  }
+  

@@ -10,7 +10,6 @@ export async function extractOnAir(response: Response): Promise<OnAirAnime[]> {
     for (let i = 0; i < $ul.find("li").length; i++) {
       const $li = $($ul.find("li")[i]);
       const type = $li.find("span").text();
-      console.log($li.find("a").text(), $li.find("span").text());
   
       info.push({
           title: $li.find("a").text().replace(type, "").trim(),
