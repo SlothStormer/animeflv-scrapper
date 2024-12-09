@@ -1,7 +1,7 @@
 {
     "name": "@slothstormer/animeflv-scrapper",
     "description": "Scrapper para AnimeFLV",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "main": "lib/es5/index.js",
     "module": "lib/es6/index.js",
     "types": "lib/es6/index.d.ts",

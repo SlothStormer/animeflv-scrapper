@@ -1,5 +1,6 @@
 export interface AnimeInfo {
   title: string | null;
+  image: string | undefined;
   description: string;
   genres: string[];
   episodes: EpisodeInfo[] | null;

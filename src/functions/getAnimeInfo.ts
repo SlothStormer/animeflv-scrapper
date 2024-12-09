@@ -34,7 +34,7 @@ export const getAnimeInfo = async (
   try {
     const url =
       config.baseUrl + config.animeUrl + anime.replace(/ /g, "-").toLowerCase(); // "Oshi no Ko" => "oshi-no-ko"
-    const response = isTauri() ? await tauriFetch(url) : await fetch(url);
+    const response = config.isTauri ? await tauriFetch(url) : await fetch(url);
     return extractInfo(response);
   } catch (error) {
     return null;

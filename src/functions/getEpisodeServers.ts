@@ -33,6 +33,7 @@ export async function getEpisodeServers(
 
   try {
     const url = config.baseUrl + config.episodeUrl + id;
+    console.log(url)
     const response = config.isTauri ? await tauriFetch(url) : await fetch(url);
     return extractServers(response);
   } catch (error) {
