@@ -4,6 +4,7 @@
     "moduleResolution": "Node",
     "strict": true,
     "esModuleInterop": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "outDir": "./dist/lib" // Carpeta de salida para compilar el código
