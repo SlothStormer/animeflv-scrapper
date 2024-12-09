@@ -1,12 +1,14 @@
 import { extractLatest } from "../utils/extractLatest";
 import type { LatestAnime } from "../types/index";
 import config from "../config";
+import { isTauri } from "@tauri-apps/api/core";
+import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 
 /**
  * Devuelve los ultimos 20 capitulos subidos a AnimeFLV
- * 
+ *
  * @returns {Promise<LatestAnime[]>} Una promesa que resuelve con los ultimos 20 capitulos subidos a AnimeFLV en un array de objetos 'LatestAnime'
- * 
+ *
  * @example
  * const latestAnimes = await getLatestAnimes();
  * // Output:
@@ -27,11 +29,12 @@ import config from "../config";
  * ]
  */
 export const getLatestAnimes = async (): Promise<LatestAnime[] | null> => {
-    try {
-      const response = await fetch(config.baseUrl);
-      return extractLatest(response);
-    } catch (error) {
-      return null;
-    }
-  };
-  
+  try {
+    const response = isTauri()
+      ? await tauriFetch(config.baseUrl)
+      : await fetch(config.baseUrl);
+    return extractLatest(response);
+  } catch (error) {
+    return null;
+  }
+};

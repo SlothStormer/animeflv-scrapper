@@ -1,13 +1,15 @@
 import type { AnimeInfo } from "../types/index";
 import { extractInfo } from "../utils/extractInfo";
 import config from "../config";
+import { isTauri } from "@tauri-apps/api/core";
+import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 
 /**
  * Devuelve la informacion de un anime de AnimeFLV
- * 
+ *
  * @param {string} anime - Nombre del anime
  * @returns {Promise<AnimeInfo>} Una promesa que resuelve con la informacion del anime 'AnimeInfo'
- * 
+ *
  * @example
  * const anime = await getAnimeInfo("One Piece");
  * // Output:
@@ -23,13 +25,16 @@ import config from "../config";
  *   rating: 8.5,
  *   nextEpisode: "2022-01-01",
  *   status: "Ongoing",
- *   relatedAnime: [] 
+ *   relatedAnime: []
  */
-export const getAnimeInfo = async (anime: string): Promise<AnimeInfo | null> => {
+export const getAnimeInfo = async (
+  anime: string
+): Promise<AnimeInfo | null> => {
   if (!anime) throw new Error("Anime is required");
   try {
-    const url = config.baseUrl + config.animeUrl + anime.replace(/ /g, "-").toLowerCase() // "Oshi no Ko" => "oshi-no-ko"
-    const response = await fetch(url);
+    const url =
+      config.baseUrl + config.animeUrl + anime.replace(/ /g, "-").toLowerCase(); // "Oshi no Ko" => "oshi-no-ko"
+    const response = isTauri() ? await tauriFetch(url) : await fetch(url);
     return extractInfo(response);
   } catch (error) {
     return null;
