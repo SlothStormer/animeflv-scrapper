@@ -1,3 +1,12 @@
-import * as Utils from './utils';
+export type {
+  AnimeInfo,
+  EpisodeInfo,
+  EpisodeServer,
+  LatestAnime,
+  NextEpisode,
+  OnAirAnime,
+  RelatedAnime,
+  SearchAnime,
+} from "./types";
 
-export default Utils;
+export * as Scrapper from "./functions";

@@ -1,5 +1,5 @@
 import type { EpisodeServer } from "../types/index";
-import * as cheerio from "cheerio";
+import { extractServers } from "../utils/extractServers";
 import config from "../config";
 
 /**
@@ -25,22 +25,14 @@ import config from "../config";
  *   {...},
  * ]
  */
-export const getEpisodeServers = async (id: string): Promise<EpisodeServer[]> => {
-  const response = await fetch(config.baseUrl + config.episodeUrl + id);
-  const $ = cheerio.load(await response.text());
-  const scripts = $("script:not([src])");
+export async function getEpisodeServers(id: string): Promise<EpisodeServer[] | null> {
+  if (!id) throw new Error("ID is required");
 
-  let episodes: EpisodeServer[] = [];
-
-  scripts.each((index, script) => {
-    const content = $(script).html(); // Obtén el contenido del script
-    if (content?.includes("var videos")) {
-      const episodesMath = content?.match(/var videos = (.*?);/);
-      const { SUB } = episodesMath ? JSON.parse(episodesMath[1]) : null;
-
-      episodes = SUB;
-    }
-  });
-
-  return episodes;
+  try {
+    const url = config.baseUrl + config.episodeUrl + id;
+    const response = await fetch(url);
+    return extractServers(response);
+  } catch (error) {
+    return null;
+  }
 };
