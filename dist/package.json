@@ -1,7 +1,7 @@
 {
     "name": "@slothstormer/animeflv-scrapper",
     "description": "Scrapper para AnimeFLV",
-    "version": "0.1.2",
+    "version": "0.1.4",
     "main": "lib/es5/index.js",
     "module": "lib/es6/index.js",
     "repository": {
@@ -12,6 +12,8 @@
     "author": "SlothStormer",
     "homepage": "https://github.com/SlothStormer/animeflv-scrapper#readme",
     "dependencies": {
+        "@tauri-apps/api": "^2.1.1",
+        "@tauri-apps/plugin-http": "^2.0.1",
         "cheerio": "^1.0.0"
     }
 }
