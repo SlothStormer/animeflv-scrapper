@@ -1,3 +1,6 @@
+import { isTauri } from "@tauri-apps/api/core";
+import config from "./config";
+
 export type {
   AnimeInfo,
   EpisodeInfo,
@@ -6,6 +9,17 @@ export type {
   NextEpisode,
   OnAirAnime,
   RelatedAnime,
-  SearchAnime  
+  SearchAnime,
 } from "./types";
 export * from "./functions";
+
+(async () => {
+  try {
+    config.isTauri = isTauri();
+  } catch (error) {}
+  console.log(
+    config.isTauri
+      ? "AnimeFLV Scrapper iniciado utilizando Tauri"
+      : "AnimeFLV Scrapper inicializado en modo nativo"
+  );
+})();

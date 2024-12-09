@@ -1,8 +1,7 @@
+import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 import { extractSearch } from "../utils/extractSearch";
 import type { SearchAnime } from "../types/index";
 import config from "../config";
-import { isTauri } from "@tauri-apps/api/core";
-import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 
 /**
  * Busca un anime en la base de datos de AnimeFLV
@@ -20,15 +19,16 @@ import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 export const searchAnime = async (
   anime: string,
   page: number = 1
-): Promise<SearchAnime[]> => {
+): Promise<SearchAnime[] | null> => {
   if (!anime) throw new Error("Anime is required");
   try {
     const formatedAnime = anime.replace(/ /g, "+"); // Oshi no ko ==> oshi+no+ko
     const url =
       config.baseUrl + config.searchUrl + `${formatedAnime}&page=${page}`;
-    const response = isTauri() ? await tauriFetch(url) : await fetch(url);
+    const response = config.isTauri ? await tauriFetch(url) : await fetch(url);
     return extractSearch(response);
   } catch (error) {
-    throw new Error("Error al buscar el anime");
+    console.log(error);
+    return null;
   }
 };

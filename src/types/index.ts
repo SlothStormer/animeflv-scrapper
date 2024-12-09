@@ -23,6 +23,12 @@ export interface EpisodeServer {
   url: string | undefined;
 }
 
+export interface EpisodeServers {
+  servers: EpisodeServer[];
+  prevEpUrl: string | undefined;
+  nextEpUrl: string | undefined;
+}
+
 export interface LatestAnime {
   title: string;
   episode: string;

@@ -1,8 +1,7 @@
-import type { EpisodeServer } from "../types/index";
-import { extractServers } from "../utils/extractServers";
-import config from "../config";
-import { isTauri } from "@tauri-apps/api/core";
 import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
+import { extractServers } from "../utils/extractServers";
+import type { EpisodeServers } from "../types/index";
+import config from "../config";
 
 /**
  * Devuelve los servidores donde se encuentra el episodio del anime
@@ -29,12 +28,12 @@ import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
  */
 export async function getEpisodeServers(
   id: string
-): Promise<EpisodeServer[] | null> {
+): Promise<EpisodeServers | null> {
   if (!id) throw new Error("ID is required");
 
   try {
     const url = config.baseUrl + config.episodeUrl + id;
-    const response = isTauri() ? await tauriFetch(url) : await fetch(url);
+    const response = config.isTauri ? await tauriFetch(url) : await fetch(url);
     return extractServers(response);
   } catch (error) {
     return null;
