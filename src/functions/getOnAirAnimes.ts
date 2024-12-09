@@ -1,6 +1,8 @@
 import { extractOnAir } from "../utils/extractOnAir";
 import type { OnAirAnime } from "../types/index";
 import config from "../config";
+import { isTauri } from "@tauri-apps/api/core";
+import { fetch as tauriFetch } from "@tauri-apps/plugin-http";
 
 /**
  * Devuelve los animes en emision de AnimeFLV
@@ -25,7 +27,7 @@ import config from "../config";
  */
 export const getOnAirAnimes = async (): Promise<OnAirAnime[] | null> => {
   try {
-    const response = await fetch(config.baseUrl);
+    let response = isTauri() ? await tauriFetch(config.baseUrl) : await fetch(config.baseUrl);
     return extractOnAir(response);
   } catch (error) {
     return null;
